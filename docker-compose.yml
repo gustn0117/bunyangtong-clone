@@ -1,0 +1,8 @@
+services:
+  app:
+    build: .
+    container_name: bunyangtong-clone
+    restart: unless-stopped
+    ports:
+      - "3029:3000"
+    network_mode: bridge
