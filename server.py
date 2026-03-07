@@ -17,6 +17,13 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         return os.path.join(ROOT, path)
 
     def do_GET(self):
+        # Redirect root to site folder
+        if self.path == '/' or self.path == '':
+            self.send_response(301)
+            self.send_header('Location', '/xn--4k0bm4xt7at1qcucmyumnb0xe.kr/')
+            self.end_headers()
+            return
+
         # The raw path includes & which might be in filenames
         raw = urllib.parse.unquote(self.path).lstrip('/')
         full_path = os.path.join(ROOT, raw)
