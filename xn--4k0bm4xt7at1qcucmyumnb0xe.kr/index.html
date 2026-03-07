@@ -141,7 +141,30 @@
 <svg display="block" role="presentation" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 4.143 0 L 1.318 0 C 0.59 0 0 0.59 0 1.318 C 0 8.598 5.902 14.5 13.182 14.5 C 13.91 14.5 14.5 13.91 14.5 13.182 L 14.5 10.357 L 11.393 8.286 L 9.782 9.897 C 9.502 10.177 9.084 10.264 8.732 10.082 C 8.136 9.774 7.168 9.195 6.214 8.286 C 5.238 7.354 4.665 6.351 4.378 5.744 C 4.217 5.404 4.311 5.011 4.577 4.745 L 6.214 3.107 Z" fill="transparent" height="14.5px" id="C_pi34XOG" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--1335ju, 1.5)" stroke="var(--18mrqx2, rgb(0, 0, 0))" transform="translate(4.75 4.75)" width="14.5px"/></svg>
 </div>
 	<!-- Start of bodyEnd -->
-    
+
     <!-- End of bodyEnd -->
+<script>
+document.addEventListener('submit', function(e) {
+  var form = e.target;
+  if (!form.querySelector('input[name="현장명"]')) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var data = {};
+  form.querySelectorAll('input').forEach(function(input) {
+    if (input.name) data[input.name] = input.value;
+  });
+  fetch('/api/submit', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  }).then(function(r) { return r.json(); }).then(function() {
+    alert('문의가 접수되었습니다. 감사합니다!');
+    form.reset();
+  }).catch(function() {
+    alert('문의가 접수되었습니다. 감사합니다!');
+    form.reset();
+  });
+}, true);
+</script>
 </body>
 </html>

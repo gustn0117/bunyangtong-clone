@@ -6,3 +6,5 @@ services:
     ports:
       - "3029:3000"
     network_mode: bridge
+    volumes:
+      - ./data:/app/data
