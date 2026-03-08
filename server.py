@@ -36,9 +36,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
     def do_GET(self):
         if self.path == '/' or self.path == '':
-            self.send_response(301)
-            self.send_header('Location', '/xn--4k0bm4xt7at1qcucmyumnb0xe.kr/')
-            self.end_headers()
+            index = os.path.join(ROOT, 'xn--4k0bm4xt7at1qcucmyumnb0xe.kr', 'index.html')
+            self.send_file(index)
             return
 
         if self.path == '/admin':
