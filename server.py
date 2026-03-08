@@ -44,7 +44,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self.serve_admin_page()
             return
 
-        if self.path == '/api/submissions':
+        if self.path.startswith('/api/submissions'):
             self.serve_submissions_api()
             return
 
