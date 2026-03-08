@@ -7,7 +7,7 @@ import time
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(ROOT, 'data')
 SUBMISSIONS_FILE = os.path.join(DATA_DIR, 'submissions.json')
-ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'bunyang2026!')
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', '1234')
 
 os.makedirs(DATA_DIR, exist_ok=True)
 
