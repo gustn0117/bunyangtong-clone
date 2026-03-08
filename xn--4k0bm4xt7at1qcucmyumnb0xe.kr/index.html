@@ -166,5 +166,32 @@ document.addEventListener('submit', function(e) {
   });
 }, true);
 </script>
+
+<div id="popup-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:99999;justify-content:center;align-items:center;padding:20px;">
+  <div style="position:relative;max-width:500px;width:100%;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+    <img src="popup.jpeg" style="width:100%;display:block;" alt="900만원 전환 중심 전략 패키지">
+    <div style="display:flex;border-top:1px solid #eee;">
+      <button onclick="closePopupToday()" style="flex:1;padding:14px;background:none;border:none;font-size:14px;color:#888;cursor:pointer;border-right:1px solid #eee;">오늘 하루 보지 않기</button>
+      <button onclick="closePopup()" style="flex:1;padding:14px;background:none;border:none;font-size:14px;color:#333;cursor:pointer;font-weight:600;">닫기</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'popup_dismissed';
+  var dismissed = localStorage.getItem(KEY);
+  if (dismissed && new Date().getTime() < parseInt(dismissed)) return;
+  var el = document.getElementById('popup-overlay');
+  el.style.display = 'flex';
+  el.addEventListener('click', function(e) { if (e.target === el) closePopup(); });
+})();
+function closePopup() { document.getElementById('popup-overlay').style.display = 'none'; }
+function closePopupToday() {
+  var tomorrow = new Date();
+  tomorrow.setHours(24,0,0,0);
+  localStorage.setItem('popup_dismissed', tomorrow.getTime());
+  closePopup();
+}
+</script>
 </body>
 </html>
